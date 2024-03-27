@@ -1,0 +1,134 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:scheme_name",
+ "creation": "2024-03-05 14:56:06.550482",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "scheme_name",
+  "start_date",
+  "scheme_month_tenure",
+  "last_date_of_enroll",
+  "column_break_wwp6h",
+  "status",
+  "scheme_type",
+  "is_free_installment",
+  "expense_account",
+  "no_of_free_installment",
+  "paid_installment",
+  "section_break_gab9o",
+  "scheme_details",
+  "scheme_rule"
+ ],
+ "fields": [
+  {
+   "fieldname": "scheme_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Scheme Name ",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Active\nExpired",
+   "read_only": 1
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date"
+  },
+  {
+   "fieldname": "scheme_month_tenure",
+   "fieldtype": "Int",
+   "label": "Scheme Month Tenure"
+  },
+  {
+   "fieldname": "last_date_of_enroll",
+   "fieldtype": "Date",
+   "label": "Last Date of Enroll"
+  },
+  {
+   "fieldname": "scheme_type",
+   "fieldtype": "Link",
+   "label": "Scheme Type",
+   "options": "Scheme Type"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_free_installment",
+   "fieldtype": "Check",
+   "label": "Is Free Installment",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.is_free_installment == 1",
+   "fieldname": "expense_account",
+   "fieldtype": "Data",
+   "label": "Expense Account"
+  },
+  {
+   "depends_on": "eval:doc.is_free_installment == 1",
+   "fieldname": "no_of_free_installment",
+   "fieldtype": "Data",
+   "label": "No. of Free Installment"
+  },
+  {
+   "fieldname": "paid_installment",
+   "fieldtype": "Data",
+   "label": "Paid Installment"
+  },
+  {
+   "fieldname": "scheme_details",
+   "fieldtype": "Long Text",
+   "label": "Scheme Details"
+  },
+  {
+   "fieldname": "scheme_rule",
+   "fieldtype": "Long Text",
+   "label": "Scheme Rule"
+  },
+  {
+   "fieldname": "column_break_wwp6h",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_gab9o",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-03-05 15:47:12.436858",
+ "modified_by": "Administrator",
+ "module": "Erpgold",
+ "name": "Gold Scheme",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

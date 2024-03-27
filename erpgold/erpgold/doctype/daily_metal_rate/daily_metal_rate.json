@@ -1,0 +1,48 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "DMR.#####",
+ "creation": "2024-03-04 14:30:35.697093",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "metal_type",
+  "purity",
+  "rate"
+ ],
+ "fields": [
+  {
+   "fieldname": "metal_type",
+   "fieldtype": "Data",
+   "label": "Metal Type"
+  },
+  {
+   "fieldname": "purity",
+   "fieldtype": "Data",
+   "label": "Purity"
+  },
+  {
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "label": "Rate"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-03-04 16:26:23.047332",
+ "modified_by": "Administrator",
+ "module": "Erpgold",
+ "name": "Daily Metal Rate",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

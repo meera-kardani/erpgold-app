@@ -28,6 +28,7 @@ app_license = "MIT"
 
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
+
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -123,6 +124,11 @@ app_license = "MIT"
 # 		"on_trash": "method"
 # 	}
 # }
+doc_events = {
+    "Stock Entry" : {
+        "on_submit": "erpgold.override.stock_entry_detail.on_submit"
+    }
+}
 
 # Scheduled Tasks
 # ---------------
@@ -213,3 +219,17 @@ app_license = "MIT"
 # auth_hooks = [
 # 	"erpgold.auth.validate"
 # ]
+
+
+doctype_js = {
+            "Purchase Invoice" : "public/js/purchase_invoice_item.js",
+            "Purchase Receipt" : "public/js/purchase_receipt_item.js",
+            "Purchase Order" : "public/js/purchase_order_item.js",
+            "Stock Entry" : "public/js/stock_entry_detail.js",
+            "Delivery Note" : "public/js/delivery_note_item.js",
+            "Sales Invoice" : "public/js/sales_invoice_item.js",
+            "Sales Order" : "public/js/sales_order_item.js"
+            }
+
+# add fixture
+fixtures = ["Custom Field", ]
