@@ -125,8 +125,11 @@ app_license = "MIT"
 # 	}
 # }
 doc_events = {
-    "Stock Entry" : {
-        "on_submit": "erpgold.override.stock_entry_detail.on_submit"
+    "Stock Entry": {
+        "on_submit": "erpgold.override.serial_no_detail.custom_update_serial_nos_after_submit"
+    },
+    "Purchase Receipt":{
+        "on_submit": "erpgold.override.serial_no_detail.custom_update_serial_nos_after_submit"
     }
 }
 

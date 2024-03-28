@@ -20,13 +20,13 @@ frappe.ui.form.on('Purchase Receipt Item', {
     custom_labour_rate: function (frm, cdt, cdn) {
         calculateLabourAmount(frm, cdt, cdn);
     },
-    custom_other_amount_: function (frm, cdt, cdn) {
+    custom_other_amount: function (frm, cdt, cdn) {
         calculateTotalAmount(frm, cdt, cdn);
     },
     custom_discount: function (frm, cdt, cdn) {
         calculateTotalAmount(frm, cdt, cdn);
     },
-    custom_gold_value_: function (frm, cdt, cdn) {
+    custom_gold_value: function (frm, cdt, cdn) {
         calculateTotalAmount(frm, cdt, cdn);
     },
     custom_labour_amount: function (frm, cdt, cdn) {
@@ -40,7 +40,7 @@ function calculateNetWeight(frm, cdt, cdn) {
     var lessWeight = child.custom_less_weight || 0;
 
     var netWeight = grossWeight - lessWeight;
-    frappe.model.set_value(cdt, cdn, 'custom_net_weight_', netWeight);
+    frappe.model.set_value(cdt, cdn, 'custom_net_weight', netWeight);
 
     calculateFineWeight(frm, cdt, cdn);
 }
@@ -48,7 +48,7 @@ function calculateNetWeight(frm, cdt, cdn) {
 function calculateFineWeight(frm, cdt, cdn) {
     var child = locals[cdt][cdn];
     var purityPercentage = child.custom_purity_percentage || 0;
-    var netWeight = child.custom_net_weight_ || 0;
+    var netWeight = child.custom_net_weight || 0;
 
     var fineWeight = netWeight / (purityPercentage / 100);
     frappe.model.set_value(cdt, cdn, 'custom_fine_weight', fineWeight);
@@ -59,10 +59,10 @@ function calculateFineWeight(frm, cdt, cdn) {
 function calculateGoldValue(frm, cdt, cdn) {
     var child = locals[cdt][cdn];
     var goldRate = child.custom_gold_rate || 0;
-    var netWeight = child.custom_net_weight_ || 0;
+    var netWeight = child.custom_net_weight || 0;
 
     var goldValue = goldRate * netWeight;
-    frappe.model.set_value(cdt, cdn, 'custom_gold_value_', goldValue);
+    frappe.model.set_value(cdt, cdn, 'custom_gold_value', goldValue);
 }
 
 function fetchMetalRate(frm, cdt, cdn) {
@@ -101,13 +101,13 @@ function calculateLabourAmount(frm, cdt, cdn) {
             console.log("labourAmount----", labourAmount)
             break;
         case "On Net Weight Per Gram":
-            var labourAmount = labourRate * (child.custom_net_weight_ || 0);
+            var labourAmount = labourRate * (child.custom_net_weight || 0);
             break;
         case "Flat":
             var labourAmount = labourRate;
             break;
         case "On Gold Value Percentage":
-            var labourAmount = labourRate * (child.custom_gold_value_ || 0);
+            var labourAmount = labourRate * (child.custom_gold_value || 0);
             break;
         default:
             break;
@@ -119,11 +119,11 @@ function calculateLabourAmount(frm, cdt, cdn) {
 
 function calculateTotalAmount(frm, cdt, cdn) {
     var child = locals[cdt][cdn];
-    var goldValue = child.custom_gold_value_ || 0;
+    var goldValue = child.custom_gold_value || 0;
     var labourAmount = child.custom_labour_amount || 0;
-    var otherAmount = child.custom_other_amount_ || 0;
+    var otherAmount = child.custom_other_amount || 0;
     var discount = child.custom_discount || 0;
 
     var totalAmount = goldValue + labourAmount + otherAmount - discount;
-    frappe.model.set_value(cdt, cdn, 'custom_total_amount_', totalAmount);
+    frappe.model.set_value(cdt, cdn, 'custom_total_amount', totalAmount);
 }
