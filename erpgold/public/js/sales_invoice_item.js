@@ -51,7 +51,7 @@ function calculateFineWeight(frm, cdt, cdn) {
     var netWeight = child.custom_net_weight || 0;
 
     var fineWeight = netWeight / (purityPercentage / 100);
-    frappe.model.set_value(cdt, cdn, 'custom_fine_weight_', fineWeight);
+    frappe.model.set_value(cdt, cdn, 'custom_fine_weight', fineWeight);
 
     calculateGoldValue(frm, cdt, cdn);
 }

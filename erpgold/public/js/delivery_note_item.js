@@ -36,7 +36,7 @@ frappe.ui.form.on('Delivery Note Item', {
 
 function calculateNetWeight(frm, cdt, cdn) {
     var child = locals[cdt][cdn];
-    var grossWeight = child.custom_gross_weight_ || 0;
+    var grossWeight = child.custom_gross_weight || 0;
     var lessWeight = child.custom_less_weight || 0;
 
     var netWeight = grossWeight - lessWeight;
@@ -97,7 +97,7 @@ function calculateLabourAmount(frm, cdt, cdn) {
 
     switch (labourType) {
         case "On Gross Weight Per Gram":
-            var labourAmount = labourRate * (child.custom_gross_weight_ || 0);
+            var labourAmount = labourRate * (child.custom_gross_weight || 0);
             console.log("labourAmount----", labourAmount)
             break;
         case "On Net Weight Per Gram":

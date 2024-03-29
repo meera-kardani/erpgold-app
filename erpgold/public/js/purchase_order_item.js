@@ -17,7 +17,7 @@ frappe.ui.form.on('Purchase Order Item', {
     custom_labour_type: function (frm, cdt, cdn) {
         calculateLabourAmount(frm, cdt, cdn);
     },
-    custom_labour_rate_: function (frm, cdt, cdn) {
+    custom_labour_rate: function (frm, cdt, cdn) {
         calculateLabourAmount(frm, cdt, cdn);
     },
     custom_other_amount: function (frm, cdt, cdn) {
@@ -51,7 +51,7 @@ function calculateFineWeight(frm, cdt, cdn) {
     var netWeight = child.custom_net_weight || 0;
 
     var fineWeight = netWeight / (purityPercentage / 100);
-    frappe.model.set_value(cdt, cdn, 'custom_fine_weight_', fineWeight);
+    frappe.model.set_value(cdt, cdn, 'custom_fine_weight', fineWeight);
 
     calculateGoldValue(frm, cdt, cdn);
 }
@@ -93,7 +93,7 @@ function fetchMetalRate(frm, cdt, cdn) {
 function calculateLabourAmount(frm, cdt, cdn) {
     var child = locals[cdt][cdn];
     var labourType = child.custom_labour_type;
-    var labourRate = child.custom_labour_rate_ || 0;
+    var labourRate = child.custom_labour_rate || 0;
 
     switch (labourType) {
         case "On Gross Weight Per Gram":

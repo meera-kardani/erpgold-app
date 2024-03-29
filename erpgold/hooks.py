@@ -130,6 +130,9 @@ doc_events = {
     },
     "Purchase Receipt":{
         "on_submit": "erpgold.override.serial_no_detail.custom_update_serial_nos_after_submit"
+    },
+    "Purchase Invoice":{
+        "on_submit": "erpgold.override.serial_no_detail.custom_update_serial_nos_after_submit"
     }
 }
 
