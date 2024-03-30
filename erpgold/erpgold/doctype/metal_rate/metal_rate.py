@@ -15,7 +15,7 @@ def query(metal_type, purity, date):
 
     # Check if the date exists in MetalRate doctype
     if not date1:
-        frappe.msgprint("Data is not available", raise_exception=True)
+        frappe.msgprint("Data is not available, please update rate in daily metal rate", raise_exception=True)
         message_displayed = True
         return
 
