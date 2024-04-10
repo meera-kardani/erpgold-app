@@ -86,6 +86,11 @@ function fetchMetalRate(frm, cdt, cdn) {
     var posting_date = frm.doc.posting_date;
     var custom_metal_type = child_doc.custom_metal_type;
 
+    if (!custom_metal_type || !custom_purity) {
+        // If metal_type or purity is not available, do not make the server call
+        return;
+    }
+
     frappe.call({
         method: 'erpgold.erpgold.doctype.metal_rate.metal_rate.query',
         args: {
@@ -123,7 +128,7 @@ function calculateLabourAmount(frm, cdt, cdn) {
             var labourAmount = labourRate;
             break;
         case "On Gold Value Percentage":
-            var labourAmount = labourRate * ((child.custom_gold_value || 0) / 100);
+            var labourAmount = (labourRate * (child.custom_gold_value || 0)) / 100;
             break;
         default:
             break;

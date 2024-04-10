@@ -108,7 +108,7 @@ function calculateLabourAmount(frm, cdt, cdn) {
             var labourAmount = labourRate;
             break;
         case "On Gold Value Percentage":
-            var labourAmount = labourRate * (child.custom_gold_value || 0);
+            var labourAmount = (labourRate * (child.custom_gold_value || 0)) / 100;
             break;
         default:
             break;
