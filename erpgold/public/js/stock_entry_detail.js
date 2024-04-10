@@ -22,7 +22,7 @@ frappe.ui.form.on('Stock Entry Detail', {
         // Trigger total amount calculation when labour type changes
         calculateTotalAmount(frm, cdt, cdn);
     },
-    custom_sales_labour_rate: function (frm, cdt, cdn) {
+    custom_labour_rate: function (frm, cdt, cdn) {
         calculateLabourAmount(frm, cdt, cdn);
     },
     custom_other_amount: function (frm, cdt, cdn) {
@@ -35,6 +35,15 @@ frappe.ui.form.on('Stock Entry Detail', {
         calculateTotalAmount(frm, cdt, cdn);
     },
     custom_sales_labour_amount: function (frm, cdt, cdn) {
+        calculateSalesLabourAmount(frm, cdt, cdn);
+        calculateTotalAmount(frm, cdt, cdn);
+    },
+    custom_sales_labour_type: function (frm, cdt, cdn){
+        calculateSalesLabourAmount(frm, cdt, cdn);
+        calculateTotalAmount(frm, cdt, cdn);
+    },
+    custom_value_added: function (frm, cdt, cdn){
+        calculateSalesLabourAmount(frm, cdt, cdn);
         calculateTotalAmount(frm, cdt, cdn);
     }
 });
@@ -124,13 +133,40 @@ function calculateLabourAmount(frm, cdt, cdn) {
 }
 
 
+function calculateSalesLabourAmount(frm, cdt, cdn) {
+    var child = locals[cdt][cdn];
+    var salesLabourType = child.custom_sales_labour_type;
+    var valueAdded = child.custom_value_added || 0;
+
+    switch (salesLabourType) {
+        case "On Gross Weight Per Gram":
+            var salesLabourAmount = valueAdded * (child.custom_gross_weight || 0);
+            console.log("salesLabourAmount----", salesLabourAmount)
+            break;
+        case "On Net Weight Per Gram":
+            var salesLabourAmount = valueAdded * (child.custom_net_weight || 0);
+            break;
+        case "Flat":
+            var salesLabourAmount = valueAdded;
+            break;
+        case "On Gold Value Percentage":
+            var salesLabourAmount = valueAdded * (child.custom_gold_value || 0);
+            break;
+        default:
+            break;
+    }
+
+    frappe.model.set_value(cdt, cdn, 'custom_sales_labour_amount', salesLabourAmount);
+}
+
 function calculateTotalAmount(frm, cdt, cdn) {
     var child = locals[cdt][cdn];
     var goldValue = child.custom_gold_value || 0;
     var labourAmount = child.custom_labour_amount || 0;
     var otherAmount = child.custom_other_amount || 0;
     var discount = child.custom_discount || 0;
+    var salesLabourAmount = child.custom_sales_labour_amount || 0;
 
-    var totalAmount = goldValue + labourAmount + otherAmount - discount;
+    var totalAmount = goldValue + labourAmount + salesLabourAmount + otherAmount - discount;
     frappe.model.set_value(cdt, cdn, 'custom_total_amount', totalAmount);
 }

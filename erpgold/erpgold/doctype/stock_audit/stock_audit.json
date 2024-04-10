@@ -1,0 +1,106 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{audit_date}",
+ "creation": "2024-04-10 12:36:27.494548",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "audit_date",
+  "total_items_in_stock",
+  "column_break_9naih",
+  "total_not_found_items",
+  "total_not_in_stock_items",
+  "section_break_lc9tj",
+  "scan_barcode",
+  "stock_items",
+  "not_in_stock",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "default": "Today",
+   "fieldname": "audit_date",
+   "fieldtype": "Date",
+   "label": "Audit Date"
+  },
+  {
+   "fieldname": "total_items_in_stock",
+   "fieldtype": "Data",
+   "label": "Total Items in Stock"
+  },
+  {
+   "fieldname": "column_break_9naih",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_not_found_items",
+   "fieldtype": "Data",
+   "label": "Total Not Found Items"
+  },
+  {
+   "fieldname": "total_not_in_stock_items",
+   "fieldtype": "Data",
+   "label": "Total Not In Stock Items"
+  },
+  {
+   "fieldname": "section_break_lc9tj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "scan_barcode",
+   "fieldtype": "Data",
+   "label": "Scan Barcode",
+   "options": "Barcode"
+  },
+  {
+   "fieldname": "stock_items",
+   "fieldtype": "Table",
+   "label": "Stock Items",
+   "options": "Stock Entry Detail"
+  },
+  {
+   "fieldname": "not_in_stock",
+   "fieldtype": "Data",
+   "label": "Not In Stock"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Stock Audit",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-04-10 12:50:20.728089",
+ "modified_by": "Administrator",
+ "module": "Erpgold",
+ "name": "Stock Audit",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

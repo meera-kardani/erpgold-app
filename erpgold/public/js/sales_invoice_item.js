@@ -30,6 +30,7 @@ frappe.ui.form.on('Sales Invoice Item', {
         calculateTotalAmount(frm, cdt, cdn);
     },
     custom_sales_labour_amount: function (frm, cdt, cdn) {
+        calculateLabourAmount(frm, cdt, cdn);
         calculateTotalAmount(frm, cdt, cdn);
     }
 });
