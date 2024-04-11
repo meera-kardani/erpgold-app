@@ -139,11 +139,11 @@ doc_events = {
 
 # hooks.py
 
-doc_events = {
-    "Stock Entry": {
-        "on_submit": "erpgold.override.stock_entry_detail.update_stock_entry_serial_no_details"
-    }
-}
+# doc_events = {
+#     "Stock Entry": {
+#         "on_submit": "erpgold.override.stock_entry_detail.update_stock_entry_serial_no_details"
+#     }
+# }
 
 
 # Scheduled Tasks

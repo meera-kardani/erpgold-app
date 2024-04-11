@@ -59,7 +59,7 @@
    "fieldname": "stock_items",
    "fieldtype": "Table",
    "label": "Stock Items",
-   "options": "Stock Entry Detail"
+   "options": "Stock Item"
   },
   {
    "fieldname": "not_in_stock",
@@ -80,7 +80,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-04-10 12:50:20.728089",
+ "modified": "2024-04-11 10:39:14.893631",
  "modified_by": "Administrator",
  "module": "Erpgold",
  "name": "Stock Audit",
