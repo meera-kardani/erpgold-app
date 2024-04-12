@@ -38,3 +38,36 @@ frappe.ui.form.on('Stock Audit', {
         });
     }
 });
+
+frappe.ui.form.on('Stock Audit', {
+    scan_barcode: function(frm) {
+        var scan_barcode = frm.doc.scan_barcode;
+        if (scan_barcode) {
+            var exists = false;
+            frm.doc.stock_items.forEach(function(item) {
+                if (item.serial_nos === scan_barcode) {
+                    exists = true;
+                    return false;
+                }
+            });
+            if (!exists) {
+                frappe.db.get_value('Serial No', { name: scan_barcode }, 'item_code', function(response) {
+                    if (response && response.item_code) {
+                        var new_row = frm.add_child('not_in_stock');
+                        new_row.serial_nos = scan_barcode;
+                        new_row.item_code = response.item_code;
+                        frm.refresh_field('not_in_stock');
+                        frappe.msgprint('Serial number added to Not In Stock');
+                    } else {
+                        frappe.msgprint('Failed to fetch serial details');
+                    }
+                });
+            } 
+        }
+        
+        setTimeout(function() {
+            frm.set_value('scan_barcode', '');
+            frm.refresh_field('scan_barcode');
+        }, 120);
+    }
+});

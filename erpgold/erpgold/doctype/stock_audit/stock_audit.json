@@ -63,8 +63,9 @@
   },
   {
    "fieldname": "not_in_stock",
-   "fieldtype": "Data",
-   "label": "Not In Stock"
+   "fieldtype": "Table",
+   "label": "Not In Stock",
+   "options": "Not In Stock"
   },
   {
    "fieldname": "amended_from",
@@ -80,7 +81,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-04-11 10:39:14.893631",
+ "modified": "2024-04-11 15:15:17.354722",
  "modified_by": "Administrator",
  "module": "Erpgold",
  "name": "Stock Audit",
