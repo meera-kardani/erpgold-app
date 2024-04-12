@@ -13,6 +13,7 @@ frappe.ui.form.on('Purchase Invoice Item', {
     },
     custom_gold_rate: function (frm, cdt, cdn) {
         calculateGoldValue(frm, cdt, cdn);
+        calculateFineValue(frm, cdt, cdn)
     },
     custom_labour_type: function (frm, cdt, cdn) {
         calculateLabourAmount(frm, cdt, cdn);
@@ -66,6 +67,7 @@ function calculateFineWeight(frm, cdt, cdn) {
     frappe.model.set_value(cdt, cdn, 'custom_fine_weight', fineWeight);
 
     calculateGoldValue(frm, cdt, cdn);
+    calculateFineValue(frm, cdt, cdn)
 }
 
 function calculateGoldValue(frm, cdt, cdn) {
@@ -101,6 +103,14 @@ function fetchMetalRate(frm, cdt, cdn) {
     });
 }
 
+function calculateFineValue(frm,cdt, cdn){
+    var child = locals[cdt][cdn];
+    var goldRate = child.custom_gold_rate;
+    var fineWeight = child.custom_fine_weight || 0;
+
+    var fineValue = goldRate * fineWeight;
+    frappe.model.set_value(cdt, cdn, 'custom_fine_value', fineValue);
+}
 
 function calculateLabourAmount(frm, cdt, cdn) {
     var child = locals[cdt][cdn];
