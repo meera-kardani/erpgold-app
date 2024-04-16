@@ -1,0 +1,186 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "MAT-GL-.YYYY.-.#####",
+ "creation": "2024-04-15 15:02:46.779980",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "posting_date",
+  "item_code",
+  "uom",
+  "column_break_w5k2n",
+  "purity",
+  "purity_percentage",
+  "serial_no",
+  "column_break_2w4mu",
+  "warehouse",
+  "party_type",
+  "party",
+  "section_break_dbiou",
+  "debit_amount",
+  "debit_gold",
+  "credit_amount",
+  "credit_gold",
+  "column_break_cpw6i",
+  "account_currency",
+  "debit_amount_in_account_currency",
+  "credit_amount_in_account_currency",
+  "column_break_bee20",
+  "voucher_type",
+  "voucher_no",
+  "fiscal_year",
+  "is_cancelled"
+ ],
+ "fields": [
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date "
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Data",
+   "label": "Item Code"
+  },
+  {
+   "fieldname": "uom",
+   "fieldtype": "Data",
+   "label": "UOM"
+  },
+  {
+   "fieldname": "purity",
+   "fieldtype": "Data",
+   "label": "Purity"
+  },
+  {
+   "fieldname": "purity_percentage",
+   "fieldtype": "Data",
+   "label": "Purity Percentage"
+  },
+  {
+   "fieldname": "column_break_w5k2n",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "serial_no",
+   "fieldtype": "Data",
+   "label": "Serial No"
+  },
+  {
+   "fieldname": "warehouse",
+   "fieldtype": "Data",
+   "label": "Warehouse"
+  },
+  {
+   "fieldname": "party_type",
+   "fieldtype": "Select",
+   "label": "Party Type",
+   "options": "customer\nsuppiler"
+  },
+  {
+   "fieldname": "party",
+   "fieldtype": "Data",
+   "label": "Party"
+  },
+  {
+   "fieldname": "debit_amount",
+   "fieldtype": "Currency",
+   "label": "Debit Amount "
+  },
+  {
+   "fieldname": "section_break_dbiou",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "debit_gold",
+   "fieldtype": "Data",
+   "label": "Debit Gold"
+  },
+  {
+   "fieldname": "credit_amount",
+   "fieldtype": "Currency",
+   "label": "Credit Amount "
+  },
+  {
+   "fieldname": "credit_gold",
+   "fieldtype": "Data",
+   "label": "Credit Gold "
+  },
+  {
+   "fieldname": "account_currency",
+   "fieldtype": "Currency",
+   "label": "Account Currency"
+  },
+  {
+   "fieldname": "debit_amount_in_account_currency",
+   "fieldtype": "Currency",
+   "label": "Debit Amount in Account Currency"
+  },
+  {
+   "fieldname": "column_break_cpw6i",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "credit_amount_in_account_currency",
+   "fieldtype": "Currency",
+   "label": "Credit Amount in Account Currency"
+  },
+  {
+   "fieldname": "voucher_type",
+   "fieldtype": "Data",
+   "label": "Voucher Type"
+  },
+  {
+   "fieldname": "voucher_no",
+   "fieldtype": "Data",
+   "label": "Voucher No"
+  },
+  {
+   "fieldname": "fiscal_year",
+   "fieldtype": "Data",
+   "label": "Fiscal Year"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_cancelled",
+   "fieldtype": "Check",
+   "label": "Is Cancelled"
+  },
+  {
+   "fieldname": "column_break_2w4mu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_bee20",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-04-15 15:14:25.914757",
+ "modified_by": "Administrator",
+ "module": "Erpgold",
+ "name": "Gold Ledger",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
