@@ -11,20 +11,20 @@ def update_gold_ledger_on_stock_entry_submit(doc, method):
     """
     Update Gold Ledger on Stock Entry Submit
     """
-    if doc.docstatus == 1:  # Check if the document is submitted
+    if doc.docstatus == 1: 
         if doc.doctype in ["Purchase Receipt"]:
             party_type = "supplier"
-            party_name = doc.supplier  # Fetch supplier from the document
+            party_name = doc.supplier 
         elif doc.doctype in ["Delivery Note"]:
             party_type = "customer"
-            party_name = doc.customer  # No party name for sales transactions
+            party_name = doc.customer
         else:
             party_type = ""
-            party_name = ""  # No party name for other documents
+            party_name = ""
 
         stock_ledger_entries = frappe.get_all("Stock Ledger Entry", 
                                               filters={"voucher_no": doc.name},
-                                              fields=["item_code", "stock_uom", "serial_no", "posting_date", "warehouse", "voucher_type", "voucher_no", "fiscal_year", "is_cancelled"])  # Fetching required fields from Stock Ledger
+                                              fields=["item_code", "stock_uom", "serial_no", "posting_date", "warehouse", "voucher_type", "voucher_no", "fiscal_year", "is_cancelled"])  
         for entry in stock_ledger_entries:
             for item in doc.items:
                 gold_ledger_entry = frappe.get_doc({
@@ -47,5 +47,5 @@ def update_gold_ledger_on_stock_entry_submit(doc, method):
                     "party_type": party_type,
                     "party": party_name  
                 })
-                gold_ledger_entry.insert(ignore_permissions=True)  # Ignore permissions for simplicity
+                gold_ledger_entry.insert(ignore_permissions=True)  
                 gold_ledger_entry.submit()
