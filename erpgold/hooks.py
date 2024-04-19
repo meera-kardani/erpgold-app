@@ -126,13 +126,18 @@ app_license = "MIT"
 # }
 doc_events = {
     "Stock Entry": {
-        "on_submit": "erpgold.override.serial_no_detail.custom_update_serial_nos_after_submit"
+        "on_submit": ["erpgold.override.serial_no_detail.custom_update_serial_nos_after_submit",
+                    "erpgold.erpgold.doctype.gold_ledger.gold_ledger.update_gold_ledger_on_stock_entry_submit"]
     },
     "Purchase Receipt":{
-        "on_submit": "erpgold.override.serial_no_detail.custom_update_serial_nos_after_submit"
+        "on_submit": ["erpgold.override.serial_no_detail.custom_update_serial_nos_after_submit",
+                    "erpgold.erpgold.doctype.gold_ledger.gold_ledger.update_gold_ledger_on_stock_entry_submit"]
     },
     "Purchase Invoice":{
         "on_submit": "erpgold.override.serial_no_detail.custom_update_serial_nos_after_submit"
+    },
+    "Delivery Note":{
+        "on_submit" : "erpgold.erpgold.doctype.gold_ledger.gold_ledger.update_gold_ledger_on_stock_entry_submit"
     }
 }
 

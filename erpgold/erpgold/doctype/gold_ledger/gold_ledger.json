@@ -78,7 +78,7 @@
    "fieldname": "party_type",
    "fieldtype": "Select",
    "label": "Party Type",
-   "options": "customer\nsuppiler"
+   "options": "customer\nsupplier"
   },
   {
    "fieldname": "party",
@@ -160,7 +160,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-04-15 15:14:25.914757",
+ "modified": "2024-04-19 15:15:14.813935",
  "modified_by": "Administrator",
  "module": "Erpgold",
  "name": "Gold Ledger",
