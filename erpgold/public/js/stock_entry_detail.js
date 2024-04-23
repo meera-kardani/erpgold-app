@@ -184,4 +184,5 @@ function calculateTotalAmount(frm, cdt, cdn) {
 
     var totalAmount = goldValue + labourAmount + salesLabourAmount + otherAmount - discount;
     frappe.model.set_value(cdt, cdn, 'custom_total_amount', totalAmount);
+    frappe.model.set_value(cdt, cdn, 'basic_rate', totalAmount);
 }

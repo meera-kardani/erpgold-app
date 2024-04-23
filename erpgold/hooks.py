@@ -11,6 +11,7 @@ app_license = "MIT"
 # include js, css files in header of desk.html
 # app_include_css = "/assets/erpgold/css/erpgold.css"
 # app_include_js = "/assets/erpgold/js/erpgold.js"
+app_include_js = "/assets/erpgold/js/barcode_scanning.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/erpgold/css/erpgold.css"
@@ -184,7 +185,11 @@ doc_events = {
 # override_whitelisted_methods = {
 # 	"frappe.desk.doctype.event.event.get_events": "erpgold.event.get_events"
 # }
-#
+override_whitelisted_methods = {
+	# "frappe.desk.doctype.event.event.get_events": "goldapp.event.get_events"
+	"erpnext.stock.utils.scan_barcode": "erpgold.override.fetch_serial_no_detail.custom_scan_barcode"
+}
+
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
 # along with any modifications made in other Frappe apps
