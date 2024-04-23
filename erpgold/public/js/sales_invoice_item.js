@@ -1,9 +1,11 @@
 frappe.ui.form.on('Sales Invoice Item', {
     custom_gross_weight: function (frm, cdt, cdn) {
         calculateNetWeight(frm, cdt, cdn);
+        calculateTotalWeight(frm, cdt, cdn);
     },
     custom_less_weight: function (frm, cdt, cdn) {
         calculateNetWeight(frm, cdt, cdn);
+        calculateTotalWeight(frm, cdt, cdn);
     },
     custom_purity_percentage: function (frm, cdt, cdn) {
         calculateFineWeight(frm, cdt, cdn);
@@ -44,6 +46,7 @@ function calculateNetWeight(frm, cdt, cdn) {
     frappe.model.set_value(cdt, cdn, 'custom_net_weight', netWeight);
 
     calculateFineWeight(frm, cdt, cdn);
+    calculateTotalWeight(frm, cdt, cdn);
 }
 
 function calculateFineWeight(frm, cdt, cdn) {
@@ -55,6 +58,7 @@ function calculateFineWeight(frm, cdt, cdn) {
     frappe.model.set_value(cdt, cdn, 'custom_fine_weight', fineWeight);
 
     calculateGoldValue(frm, cdt, cdn);
+    calculateTotalWeight(frm, cdt, cdn);
 }
 
 function calculateGoldValue(frm, cdt, cdn) {
@@ -127,4 +131,18 @@ function calculateTotalAmount(frm, cdt, cdn) {
 
     var totalAmount = goldValue + labourAmount + otherAmount - discount;
     frappe.model.set_value(cdt, cdn, 'custom_total_amount', totalAmount);
+}
+
+function  calculateTotalWeight(frm){
+    var net_weight = 0, fine_weight = 0, gross_weight = 0,less_weight = 0;
+    frm.doc.items.forEach(function(row) {
+        net_weight += row.custom_net_weight;
+        fine_weight += row.custom_fine_weight;
+        gross_weight += row.custom_gross_weight;
+        less_weight += row.custom_less_weight;
+    });       
+    frm.set_value('custom_total_net_weight', net_weight);
+    frm.set_value('custom_total_fine_weight', fine_weight);
+    frm.set_value('custom_total_gross_weight', gross_weight);
+    frm.set_value('custom_total_less_weight', less_weight);
 }

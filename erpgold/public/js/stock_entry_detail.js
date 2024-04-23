@@ -20,7 +20,6 @@ frappe.ui.form.on('Stock Entry Detail', {
     },
     custom_labour_type: function (frm, cdt, cdn) {
         calculateLabourAmount(frm, cdt, cdn);
-        // Trigger total amount calculation when labour type changes
         calculateTotalAmount(frm, cdt, cdn);
     },
     custom_labour_rate: function (frm, cdt, cdn) {

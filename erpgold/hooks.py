@@ -137,7 +137,8 @@ doc_events = {
         "on_submit": "erpgold.override.serial_no_detail.custom_update_serial_nos_after_submit"
     },
     "Delivery Note":{
-        "on_submit" : "erpgold.erpgold.doctype.gold_ledger.gold_ledger.update_gold_ledger_on_stock_entry_submit"
+        "on_submit" : "erpgold.erpgold.doctype.gold_ledger.gold_ledger.update_gold_ledger_on_stock_entry_submit",
+        "on_cancel" : "erpgold.erpgold.doctype.gold_ledger.gold_ledger.update_gold_ledger_on_stock_entry_cancel"
     }
 }
 
