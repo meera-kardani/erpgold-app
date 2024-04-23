@@ -46,6 +46,7 @@ frappe.ui.form.on('Stock Audit', {
                 if (item.serial_nos === scan_barcode) {
                     if (item.available !== 1) {
                         frappe.model.set_value(item.doctype ,item.name ,"available" , 1)
+                        incrementAuditItemCountInStock(frm);
                     }
                     exists = true;
                     return false;
@@ -99,3 +100,9 @@ frappe.ui.form.on('Stock Audit', {
         console.log('Inactive Serials:', frm.inactive_serials);
     }
 });
+
+function incrementAuditItemCountInStock(frm) {
+    var currentCount = frm.doc.total_audit_item_in_stock || 0;
+    frm.set_value('total_audit_item_in_stock', currentCount + 1);
+    frm.refresh_field('total_audit_item_in_stock');
+}

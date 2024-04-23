@@ -13,6 +13,7 @@
   "column_break_9naih",
   "total_not_found_items",
   "total_not_in_stock_items",
+  "total_audit_item_in_stock",
   "section_break_lc9tj",
   "scan_barcode",
   "stock_items",
@@ -24,12 +25,14 @@
    "default": "Today",
    "fieldname": "audit_date",
    "fieldtype": "Date",
-   "label": "Audit Date"
+   "label": "Audit Date",
+   "read_only": 1
   },
   {
    "fieldname": "total_items_in_stock",
    "fieldtype": "Data",
-   "label": "Total Items in Stock"
+   "label": "Total Items in Stock",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_9naih",
@@ -38,12 +41,14 @@
   {
    "fieldname": "total_not_found_items",
    "fieldtype": "Data",
-   "label": "Total Not Found Items"
+   "label": "Total Not Found Items",
+   "read_only": 1
   },
   {
    "fieldname": "total_not_in_stock_items",
    "fieldtype": "Data",
-   "label": "Total Not In Stock Items"
+   "label": "Total Not In Stock Items",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_lc9tj",
@@ -76,11 +81,18 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "total_audit_item_in_stock",
+   "fieldtype": "Data",
+   "label": "Total Audit Item in Stock",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2024-04-16 10:43:10.441928",
+ "modified": "2024-04-23 17:44:19.624017",
  "modified_by": "Administrator",
  "module": "Erpgold",
  "name": "Stock Audit",
