@@ -39,8 +39,8 @@ def custom_update_serial_nos_after_submit(controller, parentfield):
                     target_doc.custom_mrp_rate = record.get('custom_mrp_rate')
                     target_doc.custom_other_amount = record.get('custom_other_amount')
                     target_doc.custom_labour_type = record.get('custom_labour_type')
-                    target_doc.custom_labour_rate = record.get('custom_labour_rate')
-                    target_doc.custom_labour_amount = record.get('custom_labour_amount')
+                    target_doc.custom_sales_labour_rate = record.get('custom_labour_rate')
+                    target_doc.custom_sales_labour_amount = record.get('custom_labour_amount')
                     target_doc.custom_is_jewellery_item = record.get('custom_is_jewellery_item')
                     target_doc.save()
             else:
