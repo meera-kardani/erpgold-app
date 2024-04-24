@@ -92,9 +92,9 @@ $(document).ready(function () {
                 let cur_grid = this.frm.fields_dict[this.items_table_name].grid;
                 frappe.flags.trigger_from_barcode_scanner = true;
 
-                const { item_code, barcode, batch_no, serial_no, uom, custom_size, custom_metal_type, custom_purity, custom_purity_percentage, custom_gross_weight, custom_less_weight, custom_net_weight, custom_westage, custom_fine_weight, custom_gold_rate, custom_gold_value, custom_mrp_rate, custom_other_amount, custom_sales_labour_type, custom_value_added, custom_sales_labour_amount, custom_is_jewellery_item } = data;
+                const { item_code, barcode, batch_no, serial_no, uom, warehouse, custom_size, custom_metal_type, custom_purity, custom_purity_percentage, custom_gross_weight, custom_less_weight, custom_net_weight, custom_westage, custom_fine_weight, custom_gold_rate, custom_gold_value, custom_mrp_rate, custom_other_amount, custom_sales_labour_type, custom_value_added, custom_sales_labour_amount, custom_is_jewellery_item } = data;
 
-                let row = this.get_row_to_modify_on_scan(item_code, batch_no, uom, serial_no, barcode, custom_size, custom_metal_type, custom_purity,custom_purity_percentage, custom_gross_weight, custom_less_weight, custom_net_weight, custom_westage, custom_fine_weight, custom_gold_rate, custom_gold_value, custom_mrp_rate,custom_other_amount, custom_sales_labour_type, custom_value_added, custom_sales_labour_amount,custom_is_jewellery_item);
+                let row = this.get_row_to_modify_on_scan(item_code, batch_no, uom, serial_no, barcode, warehouse, custom_size, custom_metal_type, custom_purity,custom_purity_percentage, custom_gross_weight, custom_less_weight, custom_net_weight, custom_westage, custom_fine_weight, custom_gold_rate, custom_gold_value, custom_mrp_rate,custom_other_amount, custom_sales_labour_type, custom_value_added, custom_sales_labour_amount,custom_is_jewellery_item);
 
                 this.is_new_row = false;
                 if (!row) {
@@ -121,7 +121,7 @@ $(document).ready(function () {
 
                 frappe.run_serially([
                     () => this.set_selector_trigger_flag(data),
-                    () => this.set_item(row, item_code, barcode, batch_no, serial_no, custom_size, custom_metal_type, custom_purity,custom_purity_percentage, custom_gross_weight, custom_less_weight, custom_net_weight, custom_westage, custom_fine_weight, custom_gold_rate, custom_gold_value, custom_mrp_rate,custom_other_amount, custom_sales_labour_type, custom_value_added, custom_sales_labour_amount,custom_is_jewellery_item).then(qty => {
+                    () => this.set_item(row, item_code, barcode, batch_no, serial_no, warehouse, custom_size, custom_metal_type, custom_purity,custom_purity_percentage, custom_gross_weight, custom_less_weight, custom_net_weight, custom_westage, custom_fine_weight, custom_gold_rate, custom_gold_value, custom_mrp_rate,custom_other_amount, custom_sales_labour_type, custom_value_added, custom_sales_labour_amount,custom_is_jewellery_item).then(qty => {
                         this.show_scan_message(row.idx, row.item_code, qty);
                     }),
                     () => this.set_barcode_uom(row, uom),
@@ -160,6 +160,7 @@ $(document).ready(function () {
                         return
                     }
                     const item_data = {item_code: item_code, custom_size: custom_size, custom_metal_type: custom_metal_type, custom_purity: custom_purity, custom_purity_percentage: custom_purity_percentage, custom_gross_weight: custom_gross_weight, custom_less_weight: custom_less_weight, custom_net_weight: custom_net_weight, custom_westage:custom_westage, custom_fine_weight:custom_fine_weight, custom_gold_rate: custom_gold_rate, custom_gold_value: custom_gold_value, custom_mrp_rate: custom_mrp_rate, custom_other_amount: custom_other_amount, custom_sales_labour_type: custom_sales_labour_type, custom_value_added: custom_value_added, custom_sales_labour_amount: custom_sales_labour_amount, custom_is_jewellery_item: custom_is_jewellery_item};
+                    console.log("item_data------------------>", item_data)
                     item_data[this.qty_field] = Number((row[this.qty_field] || 0)) + Number(value);
                     await frappe.model.set_value(row.doctype, row.name, item_data);
                     await frappe.model.set_value(row.doctype, row.name, "serial_no", serial_no);
