@@ -32,6 +32,9 @@ frappe.ui.form.on('Sales Order Item', {
     custom_sales_labour_amount: function (frm, cdt, cdn) {
         calculateLabourAmount(frm, cdt, cdn);
         calculateTotalAmount(frm, cdt, cdn);
+    },
+    custom_westage: function (frm, cdt, cdn){
+        calculateGoldValue(frm, cdt, cdn)
     }
 });
 
@@ -61,8 +64,19 @@ function calculateGoldValue(frm, cdt, cdn) {
     var child = locals[cdt][cdn];
     var goldRate = child.custom_gold_rate || 0;
     var netWeight = child.custom_net_weight || 0;
+    var customWholesale = frm.doc.custom_wholesale || false; 
 
-    var goldValue = goldRate * netWeight;
+    var goldValue;
+
+    if (customWholesale) {
+        console.log("wholesale-----------")
+        var westage = child.custom_westage || 0; 
+        goldValue = (netWeight * goldRate) + westage;
+    } else {
+        goldValue = goldRate * netWeight;
+    }
+
+    console.log("goldValue---->", goldValue)
     frappe.model.set_value(cdt, cdn, 'custom_gold_value', goldValue);
 }
 
