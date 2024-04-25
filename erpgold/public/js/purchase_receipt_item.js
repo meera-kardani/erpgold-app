@@ -46,6 +46,11 @@ frappe.ui.form.on('Purchase Receipt Item', {
     custom_value_added: function (frm, cdt, cdn){
         calculateSalesLabourAmount(frm, cdt, cdn);
         calculateTotalAmount(frm, cdt, cdn);
+    },
+    qty: function (frm, cdt, cdn){
+        calculateLabourAmount(frm, cdt,cdn);
+        calculateTotalAmount(frm, cdt, cdn);
+        calculateSalesLabourAmount(frm, cdt, cdn)
     }
 });
 
@@ -114,26 +119,29 @@ function calculateFineValue(frm,cdt, cdn){
 
     var fineValue = goldRate * fineWeight;
     frappe.model.set_value(cdt, cdn, 'custom_fine_value', fineValue);
+
+    calculateTotalAmount(frm, cdt, cdn)
 }
 
 function calculateLabourAmount(frm, cdt, cdn) {
     var child = locals[cdt][cdn];
+    var quantity = child.qty;
     var labourType = child.custom_labour_type;
     var labourRate = child.custom_labour_rate || 0;
 
     switch (labourType) {
         case "On Gross Weight Per Gram":
-            var labourAmount = labourRate * (child.custom_gross_weight || 0);
+            var labourAmount = (labourRate * (child.custom_gross_weight || 0)) * quantity;
             console.log("labourAmount----", labourAmount)
             break;
         case "On Net Weight Per Gram":
-            var labourAmount = labourRate * (child.custom_net_weight || 0);
+            var labourAmount = (labourRate * (child.custom_net_weight || 0) * quantity);
             break;
         case "Flat":
-            var labourAmount = labourRate;
+            var labourAmount = labourRate * quantity;
             break;
         case "On Gold Value Percentage":
-            var labourAmount = (labourRate * (child.custom_gold_value || 0)) / 100;
+            var labourAmount =  (child.custom_gold_value || 0) * (labourRate / 100);
             break;
         default:
             break;
@@ -147,20 +155,21 @@ function calculateSalesLabourAmount(frm, cdt, cdn) {
     var child = locals[cdt][cdn];
     var salesLabourType = child.custom_sales_labour_type;
     var valueAdded = child.custom_value_added || 0;
+    var quantity = child.qty;
 
     switch (salesLabourType) {
         case "On Gross Weight Per Gram":
-            var salesLabourAmount = valueAdded * (child.custom_gross_weight || 0);
+            var salesLabourAmount = (valueAdded * (child.custom_gross_weight || 0) * quantity);
             console.log("salesLabourAmount----", salesLabourAmount)
             break;
         case "On Net Weight Per Gram":
-            var salesLabourAmount = valueAdded * (child.custom_net_weight || 0);
+            var salesLabourAmount = (valueAdded * (child.custom_net_weight || 0)) * quantity;
             break;
         case "Flat":
-            var salesLabourAmount = valueAdded;
+            var salesLabourAmount = valueAdded * quantity;
             break;
         case "On Gold Value Percentage":
-            var salesLabourAmount = valueAdded * (child.custom_gold_value || 0);
+            var salesLabourAmount = (child.custom_gold_value || 0) * (valueAdded / 100);
             break;
         default:
             break;
