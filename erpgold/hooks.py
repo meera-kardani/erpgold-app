@@ -255,7 +255,8 @@ doctype_js = {
             "Stock Entry" : "public/js/stock_entry_detail.js",
             "Delivery Note" : "public/js/delivery_note_item.js",
             "Sales Invoice" : "public/js/sales_invoice_item.js",
-            "Sales Order" : "public/js/sales_order_item.js"
+            "Sales Order" : "public/js/sales_order_item.js",
+            "Item" : "public/js/custom_item.js"
             }
 
 # add fixture
