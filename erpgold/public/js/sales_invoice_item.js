@@ -1,3 +1,9 @@
+frappe.ui.form.on('Sales Invoice', {
+    refresh: function(frm) {
+        calculateTotalWeight(frm);
+    },
+});
+
 frappe.ui.form.on('Sales Invoice Item', {
     custom_gross_weight: function (frm, cdt, cdn) {
         calculateNetWeight(frm, cdt, cdn);
@@ -155,16 +161,18 @@ function calculateTotalAmount(frm, cdt, cdn) {
     frappe.model.set_value(cdt, cdn, 'rate', totalAmount);
 }
 
-function  calculateTotalWeight(frm){
-    var net_weight = 0, fine_weight = 0, gross_weight = 0,less_weight = 0;
-    frm.doc.items.forEach(function(row) {
-        net_weight += row.custom_net_weight;
-        fine_weight += row.custom_fine_weight;
-        gross_weight += row.custom_gross_weight;
-        less_weight += row.custom_less_weight;
-    });       
-    frm.set_value('custom_total_net_weight', net_weight);
-    frm.set_value('custom_total_fine_weight', fine_weight);
-    frm.set_value('custom_total_gross_weight', gross_weight);
-    frm.set_value('custom_total_less_weight', less_weight);
+function calculateTotalWeight(frm) {
+    if (frm.doc.docstatus !== 1) { // Check if document is not submitted
+        var net_weight = 0, fine_weight = 0, gross_weight = 0, less_weight = 0;
+        frm.doc.items.forEach(function(row) {
+            net_weight += row.custom_net_weight;
+            fine_weight += row.custom_fine_weight;
+            gross_weight += row.custom_gross_weight;
+            less_weight += row.custom_less_weight;
+        });       
+        frm.set_value('custom_total_net_weight', net_weight);
+        frm.set_value('custom_total_fine_weight', fine_weight);
+        frm.set_value('custom_total_gross_weight', gross_weight);
+        frm.set_value('custom_total_less_weight', less_weight);
+    }
 }
