@@ -158,9 +158,10 @@
    "fieldtype": "Column Break"
   }
  ],
+ "in_create": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-04-19 15:15:14.813935",
+ "modified": "2024-04-29 10:36:43.429971",
  "modified_by": "Administrator",
  "module": "Erpgold",
  "name": "Gold Ledger",

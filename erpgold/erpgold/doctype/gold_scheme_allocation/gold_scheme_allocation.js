@@ -2,24 +2,22 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Gold Scheme Allocation', {
-	scheme_name: function (frm) {
-		var scheme_name = frm.doc.scheme_name;
-
-		if (scheme_name) {
-			frappe.call({
-				method: 'frappe.client.get_value',
-				args: {
-					doctype: 'Gold Scheme',
-					filters: { 'name': scheme_name },
-					fieldname: 'scheme_type'
-				},
-				callback: function (response) {
-					if (response.message && response.message.scheme_type) {
-						frm.set_value('scheme_type', response.message.scheme_type);
-					}
-				}
-			});
-		}
-	}
+    enroll_date: function(frm) {
+        calculateEndDate(frm);
+    },
+    scheme_tenure: function(frm) {
+        calculateEndDate(frm);
+    }
 });
 
+function calculateEndDate(frm) {
+    var enrollDate = new Date(frm.doc.enroll_date);
+    var schemeTenureMonths = frm.doc.scheme_tenure;
+
+    if (enrollDate && schemeTenureMonths) {
+        var endDate = new Date(enrollDate);
+        endDate.setMonth(enrollDate.getMonth() + schemeTenureMonths);
+
+        frm.set_value('scheme_end_date', endDate);
+    }
+}
